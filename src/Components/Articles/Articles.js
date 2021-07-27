@@ -11,10 +11,10 @@ const Articles = ({ allArticles }) => {
           <h1>Loading Articles...</h1>
         </>
       )
-    } else {
+    } else if(allArticles || allArticles.length) {
       return allArticles.map(article => {
         return (
-          <>
+          <div key={article.title} className="article-card">
             <h1>{article.section}</h1>
             <NavLink to={`/${article.section}`} >
               <button>See more {article.section} articles</button>
@@ -23,7 +23,7 @@ const Articles = ({ allArticles }) => {
               key={article.title}
               article={article}
             />
-          </>
+          </div>
         )
       })
     }
