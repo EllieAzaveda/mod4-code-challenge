@@ -5,35 +5,35 @@ import './Articles.css';
 
 const Articles = ({ allArticles }) => {
   const displayArticles = () => {
-    if(!allArticles || !allArticles.length) {
+    return allArticles.map(article => {
       return (
-        <>
-          <h1>Loading Articles...</h1>
-        </>
+        <div key={article.title} className="article-card">
+          <h1>{article.section}</h1>
+          <NavLink to={`/${article.section}`} >
+            <button>See more {article.section} articles</button>
+          </NavLink>
+          <ArticleCard
+            key={article.title}
+            article={article}
+          />
+        </div>
       )
-    } else if(allArticles || allArticles.length) {
-      return allArticles.map(article => {
-        return (
-          <div key={article.title} className="article-card">
-            <h1>{article.section}</h1>
-            <NavLink to={`/${article.section}`} >
-              <button>See more {article.section} articles</button>
-            </NavLink>
-            <ArticleCard
-              key={article.title}
-              article={article}
-            />
-          </div>
-        )
-      })
-    }
+    })
   }
 
-  return (
-    <div className="articles">
-      {displayArticles()}
-    </div>
-  )
+  if (!allArticles) {
+    return (
+      <>
+        <h1 className="loading-message">Loading Articles...</h1>
+      </>
+    )
+  } else {
+    return (
+      <div className="articles">
+        {displayArticles()}
+      </div>
+    )
+  }
 }
 
 export default Articles;
