@@ -15,6 +15,7 @@ class App extends Component {
       allArticles: [],
       filteredArticles: [],
       searched: false,
+      isLoading: true,
       error: ''
     }
   }
@@ -26,13 +27,14 @@ class App extends Component {
   }
 
   displayArticles = () => {
-    return !this.state.filteredArticles.length > 0 ? this.state.allArticles : this.state.filteredArticles;
+    return !this.state.filteredArticles.length ? this.state.allArticles : this.state.filteredArticles;
   }
 
   componentDidMount() {
     fetchArticles()
       .then(articlesData => {
-        (typeof articlesData === 'string') ? this.setState({ error: articlesData }) : this.setState({ allArticles: articlesData.results })
+        (typeof articlesData === 'string') ? this.setState({ error: articlesData }) : this.setState({ allArticles: articlesData.results });
+        this.setState({ isLoading: false });
       })
       .catch(err => this.setState({ error: 'Something went wrong. Please try again later.'} ))
   }
@@ -43,16 +45,17 @@ class App extends Component {
       <div className="App">
         <Header />
         {this.state.error && <h3 className='error-message'>{this.state.error}</h3>}
-        {!this.state.error &&
+        {!this.state.error && !this.state.isLoading &&
           <>
             <SearchBar
-            filterArticles={this.filterArticles}
-            filteredArticles={this.state.filteredArticles}
-            searched={this.state.searched}
+              filterArticles={this.filterArticles}
+              filteredArticles={this.state.filteredArticles}
+              searched={this.state.searched}
             />
             <Route exact path="/" render={() => {
               return <Articles
                 allArticles={this.displayArticles()}
+                isLoading={this.state.isLoading}
               />
             }}
             />
