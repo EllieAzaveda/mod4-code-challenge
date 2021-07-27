@@ -3,6 +3,7 @@ import { Route, Switch } from 'react-router-dom';
 import Header from '../Header/Header';
 import Articles from '../Articles/Articles';
 import ArticleDetails from '../ArticleDetails/ArticleDetails';
+import SearchBar from '../SearchBar/SearchBar';
 // import SectionArticles from '../SectionArticles/SectionArticles';
 import { fetchArticles } from '../../Utils/APICalls';
 import './App.css';
@@ -12,14 +13,20 @@ class App extends Component {
     super();
     this.state = {
       allArticles: [],
-      allSectionArticles: [],
+      filteredArticles: [],
+      searched: false,
       error: ''
     }
   }
 
-  findArticle = (title) => {
-    return (!this.state.allSectionArticles.length) ? this.state.allArticles.find(article => article.title === title):
-      this.state.allSectionArticles.find(article => article.title === title);
+  filterArticles = (searchValue) => {
+    const articlesToList =  this.state.allArticles.filter(article => article.title.toLowerCase().includes(searchValue.toLowerCase()))
+    this.setState({ filteredArticles: articlesToList })
+    this.setState({ searched: true })
+  }
+
+  displayArticles = () => {
+    return !this.state.filteredArticles.length > 0 ? this.state.allArticles : this.state.filteredArticles;
   }
 
   componentDidMount() {
@@ -36,11 +43,17 @@ class App extends Component {
       <div className="App">
         <Header />
         {this.state.error && <h3 className='error-message'>{this.state.error}</h3>}
+        {!this.state.error && !this.state.allArticles.length && <h1 className='loading'>Loading...</h1>}
         {!this.state.error &&
           <>
+            <SearchBar
+            filterArticles={this.filterArticles}
+            filteredArticles={this.state.filteredArticles}
+            searched={this.state.searched}
+            />
             <Route exact path="/" render={() => {
               return <Articles
-                allArticles={this.state.allArticles}
+                allArticles={this.displayArticles()}
               />
             }}
             />
