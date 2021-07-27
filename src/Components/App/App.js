@@ -43,7 +43,6 @@ class App extends Component {
       <div className="App">
         <Header />
         {this.state.error && <h3 className='error-message'>{this.state.error}</h3>}
-        {!this.state.error && !this.state.allArticles.length && <h1 className='loading'>Loading...</h1>}
         {!this.state.error &&
           <>
             <SearchBar
