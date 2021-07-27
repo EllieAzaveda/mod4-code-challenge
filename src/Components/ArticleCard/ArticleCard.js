@@ -3,7 +3,6 @@ import { NavLink } from 'react-router-dom';
 import './ArticleCard.css';
 
 const ArticleCard = ({ article }) => {
-
   return (
     <NavLink to={`/article-details/${article.title}`} >
       <div className='card'>
