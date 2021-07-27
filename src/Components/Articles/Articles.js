@@ -1,11 +1,19 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import ArticleCard from '../ArticleCard/ArticleCard';
 import './Articles.css';
 
-const Articles = ({ allArticles }) => {
-  const displayArticles = () => {
-    return allArticles.map(article => {
+class Articles extends Component {
+  constructor(props) {
+    super(props);
+      this.state = {
+        allArticles: props.allArticles,
+        isLoading: props.isLoading
+      }
+  }
+
+  displayArticles = () => {
+    return this.state.allArticles.map(article => {
       return (
         <div key={article.title} className="article-card">
           <h1>{article.section}</h1>
@@ -21,17 +29,16 @@ const Articles = ({ allArticles }) => {
     })
   }
 
-  if (!allArticles) {
+  render() {
     return (
       <>
-        <h1 className="loading-message">Loading Articles...</h1>
+        {!this.state.allArticles && this.state.isLoading && <h2 className="loading-message">Loading Articles...</h2>}
+        {this.state.allArticles && !this.state.isLoading &&
+          <div className="articles">
+            {this.displayArticles()}
+          </div>
+        }
       </>
-    )
-  } else {
-    return (
-      <div className="articles">
-        {displayArticles()}
-      </div>
     )
   }
 }
