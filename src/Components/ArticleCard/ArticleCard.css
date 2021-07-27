@@ -1,0 +1,15 @@
+.card {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  height: 15em;
+  width: 90%;
+  border: solid black 2px;
+  margin: 1em;
+}
+
+.article-image {
+  height: 100%;
+  width: 50%;
+  object-fit: contain;
+}
