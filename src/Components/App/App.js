@@ -6,6 +6,7 @@ import ArticleDetails from '../ArticleDetails/ArticleDetails';
 import SearchBar from '../SearchBar/SearchBar';
 // import SectionArticles from '../SectionArticles/SectionArticles';
 import { fetchArticles } from '../../Utils/APICalls';
+import { cleanArticleData } from '../../Utils/cleaningMethods';
 import './App.css';
 
 class App extends Component {
@@ -38,7 +39,7 @@ class App extends Component {
   componentDidMount() {
     fetchArticles()
       .then(articlesData => {
-        (typeof articlesData === 'string') ? this.setState({ error: articlesData }) : this.setState({ allArticles: articlesData.results });
+        (typeof articlesData === 'string') ? this.setState({ error: articlesData }) : this.setState({ allArticles: cleanArticleData(articlesData.results) });
         this.setState({ isLoading: false });
       })
       .catch(err => this.setState({ error: 'Something went wrong. Please try again later.'} ))
