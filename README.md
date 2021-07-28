@@ -62,10 +62,10 @@ Find the full spec [here](https://mod4.turing.edu/projects/take_home/take_home_f
 ### Reflection
 
 #### Evolution of the Project 
-This code challenge was limited to 6-8 hours total. I spent the first hour making wireframes, a data flowchart, and a project board including user stories that follow the requirements of the assignment. Then I started coding! I started with all of the base components and finalized all of the required functionality. Once this was finished, I fixed a few bugs and added styling. In the future, I'd like to add sections display with more articles organized by sections/topics. I would also love to incorporate a saving feature with persistence (localStorage).
+This code challenge was limited to 6-8 hours total. I spent the first hour making wireframes, a data flowchart, and a project board including user stories that follow the requirements of the assignment. Then I started coding! I started with all of the base components and finalized all of the required functionality. Once this was finished, I fixed a few bugs and added styling. During the last hour, I added a "Sections" display with more articles organized by sections/topics. Later, I would love to incorporate a saving feature with persistence (localStorage).
 
 #### Wins 
 I completed my Minimum Viable Product goals within the timeboxed time! The app is also fully styled, is responsive, and is fully accessible (100% Lighthouse audit score).
 
 #### Challenges
-I attempted to start building out section displays, but unfortunately ran out of time to fix the details for those section articles. The logic began to get a bit funky, so I would need a bit more time to work out that extension.
+I attempted to start building out "Sections" displays, but unfortunately ran into some funky logic. It wasn’t as easy as I expected, but I was able to come back to it and get it completed. Still, this was surprisngly challenging. I also struggled to prioritize when I had very limited time and _unlimited_ options!
