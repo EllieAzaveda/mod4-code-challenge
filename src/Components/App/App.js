@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import Header from '../Header/Header';
 import Articles from '../Articles/Articles';
 import ArticleDetails from '../ArticleDetails/ArticleDetails';
@@ -14,10 +14,15 @@ class App extends Component {
     this.state = {
       allArticles: [],
       filteredArticles: [],
+      currentArticle: null,
       searched: false,
       isLoading: true,
       error: ''
     }
+  }
+
+  findArticle = (title) => {
+    return this.state.allArticles.find(article => article.title === title);
   }
 
   filterArticles = (searchValue) => {
@@ -61,10 +66,8 @@ class App extends Component {
             />
             <Route path="/article-details/:title" render={({ match }) => {
               const { title } = match.params;
-              let article = this.state.allArticles.find(article => article.title === title);
-
               return <ArticleDetails
-                article={article}
+                article={this.findArticle(title)}
               />
             }}
             />
