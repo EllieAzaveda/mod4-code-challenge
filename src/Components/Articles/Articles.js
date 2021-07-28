@@ -8,6 +8,7 @@ class Articles extends Component {
     super(props);
       this.state = {
         allArticles: props.allArticles,
+        inSection: props.inSection,
         isLoading: props.isLoading
       }
   }
