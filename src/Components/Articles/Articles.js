@@ -16,10 +16,12 @@ class Articles extends Component {
     return this.state.allArticles.map(article => {
       return (
         <div key={article.title} className="article-card">
-          <h1>{article.section}</h1>
-          <NavLink to={`/${article.section}`} >
-            <button>See more {article.section} articles</button>
-          </NavLink>
+          <div className="section-container">
+            <h1 className="section">{article.section}</h1>
+            <NavLink to={`/${article.section}`} >
+              <button className="section section-button">See more in: {article.section}</button>
+            </NavLink>
+          </div>
           <ArticleCard
             key={article.title}
             article={article}
