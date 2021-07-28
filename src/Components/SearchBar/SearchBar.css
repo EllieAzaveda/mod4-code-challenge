@@ -3,6 +3,16 @@
 }
 
 .search-input {
-  height: 3.7em;
-  width: 18em;
+  height: 3.5em;
+  width: 24em;
+}
+
+.search-button {
+  margin-left: 1em;
+}
+
+.search-button:hover {
+  border: 3px solid #FF7A59;
+  color: #FF7A59;
+  background: #FFFFFF;
 }
