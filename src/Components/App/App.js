@@ -4,7 +4,7 @@ import Header from '../Header/Header';
 import Articles from '../Articles/Articles';
 import ArticleDetails from '../ArticleDetails/ArticleDetails';
 import SearchBar from '../SearchBar/SearchBar';
-// import SectionArticles from '../SectionArticles/SectionArticles';
+import SectionArticles from '../SectionArticles/SectionArticles';
 import { fetchArticles } from '../../Utils/APICalls';
 import { cleanArticleData } from '../../Utils/cleaningMethods';
 import './App.css';
@@ -15,15 +15,12 @@ class App extends Component {
     this.state = {
       allArticles: [],
       filteredArticles: [],
+      allSectionArticles: [],
       currentArticle: null,
       searched: false,
       isLoading: true,
       error: ''
     }
-  }
-
-  findArticle = (title) => {
-    return this.state.allArticles.find(article => article.title === title);
   }
 
   filterArticles = (searchValue) => {
@@ -35,6 +32,16 @@ class App extends Component {
   displayArticles = () => {
     return !this.state.filteredArticles.length ? this.state.allArticles : this.state.filteredArticles;
   }
+
+  findArticle = (title) => {
+    return this.state.allSectionArticles.length > 0 ? this.state.allSectionArticles.find(article => article.title === title) :
+      this.state.allArticles.find(article => article.title === title);
+  }
+
+  updateSectionArticles = (newArticles) => {
+    this.setState({ allSectionArticles: newArticles })
+  }
+
 
   componentDidMount() {
     fetchArticles()
@@ -61,14 +68,29 @@ class App extends Component {
             <Route exact path="/" render={() => {
               return <Articles
                 allArticles={this.displayArticles()}
+                inSection={this.state.inSection}
                 isLoading={this.state.isLoading}
               />
             }}
             />
             <Route path="/article-details/:title" render={({ match }) => {
               const { title } = match.params;
+              let article = this.findArticle(title);
+
               return <ArticleDetails
-                article={this.findArticle(title)}
+                article={article}
+                findArticle={this.findArticle}
+                allArticles={this.state.allArticles}
+                allSectionArticles={this.state.allSectionArticles}
+              />
+            }}
+            />
+            <Route exact path="/:section" render={({ match }) => {
+              const { section } = match.params;
+              return <SectionArticles
+                section={section}
+                updateSectionArticles={this.updateSectionArticles}
+                allSectionArticles={this.state.allSectionArticles}
               />
             }}
             />
