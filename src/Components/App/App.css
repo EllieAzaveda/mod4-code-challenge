@@ -2,3 +2,21 @@
   font-family: 'Gowun Batang', serif;
   text-align: center;
 }
+
+button {
+  height: 3.5em;
+  width: 13em;
+  font-family: 'Gowun Batang', serif;
+  font-size: 1em;
+  font-weight: bold;
+  text-decoration: none;
+  border: solid black 1px;
+  background-color: white;
+  text-transform: uppercase;
+}
+
+button:hover {
+  border: 3px dotted #FF7A59;
+  color: #FF7A59;
+  background: #FFFFFF;
+}
