@@ -12,8 +12,7 @@ class ArticleDetails extends Component {
 
   render() {
     return (
-      <>
-      <NavLink to='/'><button className='home-button'>Back to Home Page</button></NavLink>
+      <div className="details-container">
       <div className="article-details">
         <img className="article-image" src={this.state.article.multimedia[0].url} alt={this.state.article.multimedia[0].caption}/>
         <h2 className="title">{this.state.article.title}</h2>
@@ -26,7 +25,7 @@ class ArticleDetails extends Component {
             window.location.href=`${this.state.article.short_url}`;
         }}>Read this article HERE</button>
       </div>
-      </>
+      </div>
     )
   }
 }
