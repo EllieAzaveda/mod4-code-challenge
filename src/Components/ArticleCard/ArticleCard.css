@@ -2,14 +2,18 @@
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
-  height: 15em;
-  width: 90%;
-  border: solid black 2px;
-  margin: 1em;
+  height: 22vh;
+  width: 90vw;
+  border: solid black 1px;
+  margin: 0 1em 2em 1.5em;
 }
 
-.article-image {
+.preview-image {
   height: 100%;
-  width: 50%;
   object-fit: contain;
+}
+
+.title-container {
+  color: black;
+  margin: 0 2em;
 }
