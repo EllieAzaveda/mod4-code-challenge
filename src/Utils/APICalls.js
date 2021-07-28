@@ -14,3 +14,8 @@ export const fetchArticles = () => {
   return fetch(`${baseURL}/home.json?api-key=EGWgT37pIzbpuPsACX0SnMd3wKAwXhD9`)
   .then(checkForErr)
 }
+
+export const fetchSectionArticles = (section) => {
+  return fetch(`${baseURL}/${section}.json?api-key=EGWgT37pIzbpuPsACX0SnMd3wKAwXhD9`)
+  .then(checkForErr)
+}
