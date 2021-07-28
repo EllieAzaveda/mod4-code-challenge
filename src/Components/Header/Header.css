@@ -4,3 +4,7 @@
   border-top: solid black 1px;
   border-bottom: solid black 1px;
 }
+
+.header-title:hover {
+  color: #FF7A59;
+}
